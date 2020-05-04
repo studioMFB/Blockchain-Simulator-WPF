@@ -1,0 +1,125 @@
+﻿<Window x:Class="Blockchain_Simulator_App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Blockchain_Simulator_App"
+       
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="600">
+
+    <Window.Resources>
+        <!--Style x:Key="inputTextBox" TargetType="Grid">
+            <Setter Property="Margin" Value="0,0,0.333,-0.333"/>
+            <Setter Property="Grid.ColumnDefinitions">
+                <Setter.Value>
+                    <Setter Property="ColumnDefinition" Value="80"/>
+                    <Setter Property="ColumnDefinition" Value="*"/>
+                </Setter.Value>
+                </Setter>
+        </-->
+        <Style x:Key="buttonStyle" TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="BorderBrush" Value="White" />
+            <Setter Property="Background" Value="CadetBlue" />
+            <Setter Property="Foreground" Value="#fff"/>
+            <Setter Property="FontFamily" Value="Arial, Verdana, SansSherif"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Margin" Value="0 40 0 0"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+        <Style x:Key="mainTitle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Arial, Verdana, SansSherif"/>
+            <Setter Property="Foreground" Value="CadetBlue"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0 30 0 40"/>
+        </Style>
+        <Style x:Key="titleText" TargetType="TextBlock">
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Arial, Verdana, SansSherif"/>
+            <Setter Property="Foreground" Value="CadetBlue"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5 30 10 10"/>
+        </Style>
+        <Style x:Key="readOnlyTextBox" TargetType="TextBox">
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="IsReadOnly" Value="true" />
+            <Setter Property="BorderBrush" Value="White" />
+            <Setter Property="FontFamily" Value="Arial, Verdana, SansSherif"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Background" Value="#eee"/>
+            <Setter Property="Margin" Value="0 20 10 5"/>
+        </Style>
+        <Style x:Key="inputTextBox" TargetType="TextBox">
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="FontFamily" Value="Arial, Verdana, SansSherif"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Margin" Value="0 20 10 0"/>
+        </Style>
+    </Window.Resources>
+    <Border Padding="20">
+        <StackPanel>
+            <!--Title-->
+            <TextBlock Text="BLOCKCHAIN SIMULATOR" Style="{StaticResource mainTitle}"/>
+            <!--Index-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Index" Style="{StaticResource titleText}"/>
+                <TextBox x:Name="indexText" Style="{StaticResource readOnlyTextBox}"/>
+            </Grid>
+            <!--TimeStamp-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Time Stamp" Style="{StaticResource titleText}"/>
+                <TextBox x:Name="timeStampText" Style="{StaticResource readOnlyTextBox}"/>
+            </Grid>
+            <!--DataInput-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Data" Style="{StaticResource titleText}"/>
+                <TextBox x:Name="dataText" Style="{StaticResource inputTextBox}"/>
+            </Grid>
+            <!--PrevHash-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Prev Hash" Style="{StaticResource titleText}"/>
+                <TextBox x:Name="prevHashText" Style="{StaticResource readOnlyTextBox}"/>
+            </Grid>
+            <!--Hash-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Hash" Style="{StaticResource titleText}"/>
+                <TextBox x:Name="hashText" Style="{StaticResource readOnlyTextBox}"/>
+            </Grid>
+            <!-- Button -->
+            <Button x:Name="SubmitButton" Content="Submit" Click="SubmitButton_Click" Style="{StaticResource buttonStyle}" />
+
+        </StackPanel>
+    </Border>
+</Window>
