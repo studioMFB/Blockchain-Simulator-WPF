@@ -114,8 +114,16 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Difficulty" Style="{StaticResource titleText}"/>
-                <!--TextBox x:Name="difficultyText" Text="The number of 0 required to be at the begining of a Hash key." Style="{StaticResource inputTextBox}"/-->
-                <ComboBox x:Name="difficultyText" Style="{StaticResource inputComboBox}"/>
+                <ComboBox x:Name="difficultyText" Style="{StaticResource inputComboBox}">
+                    <ComboBoxItem IsEnabled="False" Content="The required number of '0' leading the Hash key."/>
+                    <ComboBoxItem Content="0"/>
+                    <ComboBoxItem Content="1"/>
+                    <ComboBoxItem Content="2"/>
+                    <ComboBoxItem Content="3"/>
+                    <ComboBoxItem Content="4"/>
+                    <ComboBoxItem Content="5"/>
+                    <ComboBoxItem Content="6"/>
+                </ComboBox>
             </Grid>
             <!--Nonce-->
             <Grid>
