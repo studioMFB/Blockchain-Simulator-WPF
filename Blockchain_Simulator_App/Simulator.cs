@@ -17,7 +17,7 @@ namespace Blockchain_Simulator_App
             do
             {
                 Console.WriteLine("\n Enter a message");
-                blockchain.AddBlock(new Block(index, Console.ReadLine()));
+                //blockchain.AddBlock(new Block(index, Console.ReadLine()));
                 Exit();
                 index++;
             } while (true);

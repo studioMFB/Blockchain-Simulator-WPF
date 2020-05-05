@@ -8,14 +8,16 @@ namespace Blockchain_Simulator_App
 {
     class Blockchain
     {
-        private const int DIFFICULTY = 2; // Number of 0 required to be at the begining of a Hash key. 
-                                          // The Higher the difficulty, the harder it is to get a suitable Hash key, the slowier it is to mine a Block.
+        //private const int DIFFICULTY = 2;
+        private static int _difficulty; // Number of 0 required to be at the begining of a Hash key. 
+                                            // The Higher the difficulty, the harder it is to get a suitable Hash key, the slowier it is to mine a Block.
         private static List<Block> _chain = new List<Block>();
         public List<Block> Chain { get { return _chain; } set { _chain = value; } }
+        public static int Difficulty { get { return _difficulty; } set { _difficulty = value; } }
 
         public Blockchain()
         {
-            _chain.Add(CreateGenesisBlock(new Block(0, "Genesis block"))); // Adds by default, the very first Block called Genesis, to the Chain.
+            _chain.Add(CreateGenesisBlock(new Block(_difficulty, "Genesis block"))); // Adds by default, the very first Block called Genesis, to the Chain.
         }
 
         /// <summary>
@@ -26,8 +28,7 @@ namespace Blockchain_Simulator_App
         /// <returns></returns>
         public Block CreateGenesisBlock(Block genesisBlock)
         {
-            // genesisBlock.MiningBlock(DIFFICULTY);
-            genesisBlock.MiningBlock(DIFFICULTY, "test");
+            genesisBlock.MiningBlock(0);
             return genesisBlock;
         }
 
@@ -52,17 +53,19 @@ namespace Blockchain_Simulator_App
         /// <param name="newData"></param>
         public void AddBlock(Block newBlock)
         {
-            // genesisBlock.MiningBlock(DIFFICULTY);
-            newBlock.MiningBlock(DIFFICULTY, "test");
+             newBlock.MiningBlock(_difficulty);
             newBlock.PrevHash = PreviousHash();
             _chain.Add(newBlock);
             bool validBlock = IsChainValid();
             Console.WriteLine("Is Block valid? \n" + validBlock);
             if (validBlock)
-            { Console.WriteLine(newBlock.ToString() + "\n"); }
+            {
+                Block.Index = Chain.IndexOf(newBlock);
+                Console.WriteLine(newBlock.ToString() + "\n");
+            }
             else
             { _chain.Remove(newBlock); }
-
+            /*
             if (_chain.Count == 3) // Testing BlockChain member method IsValid
             {
                 Console.WriteLine("\n Trying to change Data of Block index : 1");
@@ -73,6 +76,7 @@ namespace Blockchain_Simulator_App
                 _chain[1].Hash = _chain[1].CalculateHashKey_Sha256(); // As well, if you try to create a new Hash Key,
                 Console.WriteLine("Is Block valid? \n" + IsChainValid()); // it will not match the next Block previous Hash in record. 
             }
+            */
         }
 
         /// <summary>
@@ -87,7 +91,7 @@ namespace Blockchain_Simulator_App
                 Block currentBlock = _chain[index];
                 Block previousBlock = _chain[index - 1];
                 //if (currentBlock.Hash != currentBlock.CalculateHashKey_Sha256())
-                // if (currentBlock.Hash != currentBlock.MiningBlock(DIFFICULTY, "test"))
+                // if (currentBlock.Hash != currentBlock.MiningBlock(_difficulty))
                 //{ return false; }
                 if (currentBlock.PrevHash != previousBlock.Hash)
                 { return false; }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Blockchain_Simulator_App"
        
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="600">
+        Title="MainWindow" Height="650" Width="700">
 
     <Window.Resources>
         <!--Style x:Key="inputTextBox" TargetType="Grid">
@@ -27,7 +27,7 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="Medium"/>
             <Setter Property="Padding" Value="2"/>
-            <Setter Property="Margin" Value="0 40 0 0"/>
+            <Setter Property="Margin" Value="0 30 0 0"/>
             <Setter Property="Width" Value="80"/>
             <Setter Property="Height" Value="30"/>
         </Style>
@@ -37,16 +37,16 @@
             <Setter Property="Foreground" Value="CadetBlue"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Margin" Value="0 30 0 40"/>
+            <Setter Property="Margin" Value="0 30 0 30"/>
         </Style>
         <Style x:Key="titleText" TargetType="TextBlock">
             <Setter Property="Grid.Column" Value="0"/>
-            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="FontFamily" Value="Arial, Verdana"/>
             <Setter Property="Foreground" Value="CadetBlue"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Margin" Value="5 30 10 10"/>
+            <Setter Property="Margin" Value="5 30 30 10"/>
         </Style>
         <Style x:Key="readOnlyTextBox" TargetType="TextBox">
             <Setter Property="Grid.Column" Value="1"/>
@@ -55,7 +55,7 @@
             <Setter Property="FontFamily" Value="Arial, Verdana"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontWeight" Value="Medium"/>
-            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Padding" Value="8"/>
             <Setter Property="Background" Value="#eee"/>
             <Setter Property="Margin" Value="0 20 10 5"/>
         </Style>
@@ -64,7 +64,15 @@
             <Setter Property="FontFamily" Value="Arial, Verdana, SansSherif"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontWeight" Value="Medium"/>
-            <Setter Property="Padding" Value="2"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="0 20 10 0"/>
+        </Style>
+        <Style x:Key="inputComboBox" TargetType="ComboBox">
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="FontFamily" Value="Arial, Verdana, SansSherif"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Padding" Value="10"/>
             <Setter Property="Margin" Value="0 20 10 0"/>
         </Style>
     </Window.Resources>
@@ -75,7 +83,7 @@
             <!--Index-->
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Index" Style="{StaticResource titleText}"/>
@@ -84,7 +92,7 @@
             <!--TimeStamp-->
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Time Stamp" Style="{StaticResource titleText}"/>
@@ -93,16 +101,35 @@
             <!--DataInput-->
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Data" Style="{StaticResource titleText}"/>
                 <TextBox x:Name="dataText" Style="{StaticResource inputTextBox}"/>
             </Grid>
+            <!--DifficultyInput-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Difficulty" Style="{StaticResource titleText}"/>
+                <!--TextBox x:Name="difficultyText" Text="The number of 0 required to be at the begining of a Hash key." Style="{StaticResource inputTextBox}"/-->
+                <ComboBox x:Name="difficultyText" Style="{StaticResource inputComboBox}"/>
+            </Grid>
+            <!--Nonce-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Nonce" Style="{StaticResource titleText}"/>
+                <TextBox x:Name="nonceText" Style="{StaticResource readOnlyTextBox}"/>
+            </Grid>
             <!--PrevHash-->
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Prev Hash" Style="{StaticResource titleText}"/>
@@ -111,7 +138,7 @@
             <!--Hash-->
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Hash" Style="{StaticResource titleText}"/>

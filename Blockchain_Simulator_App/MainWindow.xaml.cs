@@ -29,19 +29,16 @@ namespace Blockchain_Simulator_App
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            int index = 1;
-            //do
-            //  {
+            //Block.Nonce = 0;
             Block block;
             string inputData = dataText.Text;
-            blockchain.AddBlock(block = new Block(index, inputData));
-            indexText.Text = block.Index.ToString();
-            timeStampText.Text = block.TimeStamp.ToString();
-            prevHashText.Text = block.PrevHash;
-            hashText.Text = block.Hash;
-            // Exit();
-            //  index++;
-            //  } while (true);
+            //int inputDifficulty = int.Parse(difficultyText.Text);
+            //blockchain.AddBlock(block = new Block(inputDifficulty, inputData));
+            indexText.Text = Block.Index++.ToString();
+           // timeStampText.Text = block.TimeStamp.ToString();
+            nonceText.Text = Block.Nonce.ToString();
+            //prevHashText.Text = block.PrevHash;
+           // hashText.Text = block.Hash;
         }
     }
 }
