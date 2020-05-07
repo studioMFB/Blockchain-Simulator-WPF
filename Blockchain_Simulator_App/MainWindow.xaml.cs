@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+﻿using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Blockchain_Simulator_App
 {
@@ -29,15 +17,45 @@ namespace Blockchain_Simulator_App
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
+            submitButton1.IsEnabled = true;
             Block block;
             string inputData = dataText.Text;
-            int inputDifficulty = int.Parse(difficultyText.Text);
+            int inputDifficulty = 0;
+            try
+            { inputDifficulty = int.Parse(difficultyText1.Text); }
+            catch
+            { inputDifficulty = 0; }
             blockchain.AddBlock(block = new Block(inputDifficulty, inputData));
             indexText.Text = Block.Index++.ToString();
             timeStampText.Text = block.TimeStamp.ToString();
             nonceText.Text = Block.Nonce.ToString();
             prevHashText.Text = block.PrevHash;
             hashText.Text = block.Hash;
+            if (!Blockchain.ValidBlock)
+            { TemplateA.Background = Brushes.IndianRed; }
+            submitButton.IsEnabled = false;
         }
+
+        private void SubmitButton1_Click(object sender, RoutedEventArgs e)
+        {
+            submitButton.IsEnabled = true;
+            Block block;
+            string inputData = dataText1.Text;
+            int inputDifficulty = 0;
+            try
+            { inputDifficulty = int.Parse(difficultyText1.Text); }
+            catch
+            { inputDifficulty = 0; }
+            blockchain.AddBlock(block = new Block(inputDifficulty, inputData));
+            indexText1.Text = Block.Index++.ToString();
+            timeStampText1.Text = block.TimeStamp.ToString();
+            nonceText1.Text = Block.Nonce.ToString();
+            prevHashText1.Text = block.PrevHash;
+            hashText1.Text = block.Hash;
+            if (!Blockchain.ValidBlock)
+            { TemplateA.Background = Brushes.IndianRed; }
+            submitButton1.IsEnabled = false;
+        }
+     
     }
 }

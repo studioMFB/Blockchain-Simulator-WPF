@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Blockchain_Simulator_App
 {
-    class Blockchain
+    class Blockchain//: INotifyPropertyChanged
     {
         //private const int DIFFICULTY = 2;
         private static int _difficulty; // Number of 0 required to be at the begining of a Hash key. 
                                             // The Higher the difficulty, the harder it is to get a suitable Hash key, the slowier it is to mine a Block.
         private static List<Block> _chain = new List<Block>();
+
+      //  public event PropertyChangedEventHandler PropertyChanged;
+
         public List<Block> Chain { get { return _chain; } set { _chain = value; } }
         public static int Difficulty { get { return _difficulty; } set { _difficulty = value; } }
+        public static bool ValidBlock { get; set; }
 
         public Blockchain()
         {
@@ -56,9 +62,10 @@ namespace Blockchain_Simulator_App
              newBlock.MiningBlock(_difficulty);
             newBlock.PrevHash = PreviousHash();
             _chain.Add(newBlock);
-            bool validBlock = IsChainValid();
-            Console.WriteLine("Is Block valid? \n" + validBlock);
-            if (validBlock)
+            //bool validBlock = IsChainValid();
+            ValidBlock = IsChainValid();
+            Console.WriteLine("Is Block valid? \n" + ValidBlock);
+            if (ValidBlock)
             {
                 Block.Index = Chain.IndexOf(newBlock);
                 Console.WriteLine(newBlock.ToString() + "\n");
