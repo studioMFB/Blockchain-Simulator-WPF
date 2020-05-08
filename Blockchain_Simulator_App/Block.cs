@@ -31,7 +31,23 @@ namespace Blockchain_Simulator_App
             _data = data;
             _nonce = 0;
         }
-      
+
+        /// <summary>
+        /// Write Block details.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            string lastHashKey;
+            if (_index == 1)
+            { lastHashKey = "\n - Genesis Hash Key: "; }
+            else
+            { lastHashKey = "\n - Previous Hash Key: "; }
+            { return ("\n   Block # " + _index + "\n - Time Stamp: " + _timeStamp + "\n - Data: " + _data +
+                    "\n - Difficulty: " + Blockchain.Difficulty + "\n - Nonce: " + _nonce +
+                    "\n - Hash Key: " + _hash + lastHashKey + _prevHash); }
+        }
+
         /// <summary>
         /// Cryptographic function whish from a string creates an hash key of 256 bit.
         /// </summary>

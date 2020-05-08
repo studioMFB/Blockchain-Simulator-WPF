@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:Blockchain_Simulator_App"
        
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="1400">
+        Title="MainWindow" Height="700" Width="1400">
 
     <Window.Resources>
 
         <Style x:Key="borderStyle" TargetType="Border">
-            <Setter Property="Padding" Value="20" />
+            <Setter Property="Margin" Value="0 90 0 0"/>
         </Style>
         <Style x:Key="buttonStyle" TargetType="Button">
             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -27,12 +27,12 @@
             <Setter Property="Height" Value="30"/>
         </Style>
         <Style x:Key="mainTitle" TargetType="TextBlock">
-            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontFamily" Value="Arial, Verdana"/>
             <Setter Property="Foreground" Value="CadetBlue"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Margin" Value="0 30 0 30"/>
+            <Setter Property="Margin" Value="480 50 0 50"/>
         </Style>
         <Style x:Key="titleText" TargetType="TextBlock">
             <Setter Property="Grid.Column" Value="0"/>
@@ -42,6 +42,26 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Margin" Value="0 25 10 15"/>
+        </Style>
+        <Style x:Key="titleTextHistory" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="FontFamily" Value="Arial, Verdana"/>
+            <Setter Property="Foreground" Value="CadetBlue"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5 0 0 0"/>
+        </Style>
+        <Style x:Key="readOnlyTextBoxHistory" TargetType="TextBox">
+            <Setter Property="IsReadOnly" Value="true" />
+            <Setter Property="BorderBrush" Value="White" />
+            <Setter Property="FontFamily" Value="Arial, Verdana"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="Background" Value="#eee"/>
+            <Setter Property="Margin" Value="0 22 40 5"/>
+            <Setter Property="Height" Value="374"/>
+            <Setter Property="Width" Value="580"/>
         </Style>
         <Style x:Key="readOnlyTextBox" TargetType="TextBox">
             <Setter Property="Grid.Column" Value="1"/>
@@ -73,175 +93,103 @@
     </Window.Resources>
 
     <Canvas x:Name="TemplateA">
-        <StackPanel>
-            <!--Title-->
-            <TextBlock Text="BLOCKCHAIN SIMULATOR" Style="{StaticResource mainTitle}"/>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="650"/>
-                    <ColumnDefinition Width="650"/>
-                </Grid.ColumnDefinitions>
+        <!--Title-->
+        <TextBlock Text="BLOCKCHAIN SIMULATOR" Style="{StaticResource mainTitle}"/>
+        <Grid Margin="20 50 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="600"/>
+                <ColumnDefinition Width="700"/>
+            </Grid.ColumnDefinitions>
 
-                <Border x:Name="borderColour" Style="{StaticResource borderStyle}" Grid.Column="0" >
-                    <StackPanel>
-                        <!--IndexBlock-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Blok #" Style="{StaticResource titleText}"/>
-                            <TextBox x:Name="indexText" Style="{StaticResource readOnlyTextBox}"/>
-                        </Grid>
-                        <!--TimeStamp-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Time Stamp" Style="{StaticResource titleText}"/>
-                            <TextBox x:Name="timeStampText" Style="{StaticResource readOnlyTextBox}"/>
-                        </Grid>
-                        <!--DataInput-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Data" Style="{StaticResource titleText}"/>
-                            <TextBox x:Name="dataText" Style="{StaticResource inputTextBox}"/>
-                        </Grid>
-                        <!--DifficultyInput-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Difficulty" Style="{StaticResource titleText}"/>
-                            <ComboBox x:Name="difficultyText" Style="{StaticResource inputComboBox}">
-                                <ComboBoxItem IsEnabled="False" Content="The required number of '0' leading the Hash key."/>
-                                <ComboBoxItem Content="0"/>
-                                <ComboBoxItem Content="1"/>
-                                <ComboBoxItem Content="2"/>
-                                <ComboBoxItem Content="3"/>
-                                <ComboBoxItem Content="4"/>
-                                <ComboBoxItem Content="5"/>
-                                <ComboBoxItem Content="6"/>
-                            </ComboBox>
-                        </Grid>
-                        <!--Nonce-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Nonce" Style="{StaticResource titleText}"/>
-                            <TextBox x:Name="nonceText" Style="{StaticResource readOnlyTextBox}"/>
-                        </Grid>
-                        <!--PrevHash-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Prev Hash" Style="{StaticResource titleText}"/>
-                            <TextBox x:Name="prevHashText" Style="{StaticResource readOnlyTextBox}"/>
-                        </Grid>
-                        <!--Hash-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Hash" Style="{StaticResource titleText}"/>
-                            <TextBox x:Name="hashText" Style="{StaticResource readOnlyTextBox}"/>
-                        </Grid>
-                        <!-- Button -->
-                        <Button x:Name="submitButton" Content="Submit" Click="SubmitButton_Click" Style="{StaticResource buttonStyle}" IsEnabled="True"/>
+            <Border x:Name="borderColour" Style="{StaticResource borderStyle}" Grid.Column="0" >
+                <StackPanel>
+                    <!--IndexBlock-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Blok #" Style="{StaticResource titleText}"/>
+                        <TextBox x:Name="indexText" Style="{StaticResource readOnlyTextBox}"/>
+                    </Grid>
+                    <!--TimeStamp-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Time Stamp" Style="{StaticResource titleText}"/>
+                        <TextBox x:Name="timeStampText" Style="{StaticResource readOnlyTextBox}"/>
+                    </Grid>
+                    <!--DataInput-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Data" Style="{StaticResource titleText}"/>
+                        <TextBox x:Name="dataText" Style="{StaticResource inputTextBox}"/>
+                    </Grid>
+                    <!--DifficultyInput-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Difficulty" Style="{StaticResource titleText}"/>
+                        <ComboBox x:Name="difficultyText" Style="{StaticResource inputComboBox}">
+                            <ComboBoxItem IsEnabled="False" Content="The required number of '0' leading the Hash key."/>
+                            <ComboBoxItem Content="0"/>
+                            <ComboBoxItem Content="1"/>
+                            <ComboBoxItem Content="2"/>
+                            <ComboBoxItem Content="3"/>
+                            <ComboBoxItem Content="4"/>
+                            <ComboBoxItem Content="5"/>
+                            <ComboBoxItem Content="6"/>
+                        </ComboBox>
+                    </Grid>
+                    <!--Nonce-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Nonce" Style="{StaticResource titleText}"/>
+                        <TextBox x:Name="nonceText" Style="{StaticResource readOnlyTextBox}"/>
+                    </Grid>
+                    <!--PrevHash-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Prev Hash" Style="{StaticResource titleText}"/>
+                        <TextBox x:Name="prevHashText" Style="{StaticResource readOnlyTextBox}"/>
+                    </Grid>
+                    <!--Hash-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Hash" Style="{StaticResource titleText}"/>
+                        <TextBox x:Name="hashText" Style="{StaticResource readOnlyTextBox}"/>
+                    </Grid>
+                    <!-- Button -->
+                    <Button x:Name="submitButton" Content="Submit" Click="SubmitButton_Click" Style="{StaticResource buttonStyle}" IsEnabled="True"/>
+                </StackPanel>
+            </Border>
 
-                    </StackPanel>
-                </Border>
-                <Border x:Name="borderColour1" Style="{StaticResource borderStyle}" Grid.Column="1">
-                    <StackPanel>
-                        <!--IndexBlock-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Block #" Style="{StaticResource titleText}"/>
-                            <TextBox x:Name="indexText1" Style="{StaticResource readOnlyTextBox}"/>
-                        </Grid>
-                        <!--TimeStamp-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Time Stamp" Style="{StaticResource titleText}"/>
-                            <TextBox x:Name="timeStampText1" Style="{StaticResource readOnlyTextBox}"/>
-                        </Grid>
-                        <!--DataInput-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Data" Style="{StaticResource titleText}"/>
-                            <TextBox x:Name="dataText1" Style="{StaticResource inputTextBox}"/>
-                        </Grid>
-                        <!--DifficultyInput-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Difficulty" Style="{StaticResource titleText}"/>
-                            <ComboBox x:Name="difficultyText1" Style="{StaticResource inputComboBox}">
-                                <ComboBoxItem IsEnabled="False" Content="The required number of '0' leading the Hash key."/>
-                                <ComboBoxItem Content="0"/>
-                                <ComboBoxItem Content="1"/>
-                                <ComboBoxItem Content="2"/>
-                                <ComboBoxItem Content="3"/>
-                                <ComboBoxItem Content="4"/>
-                                <ComboBoxItem Content="5"/>
-                                <ComboBoxItem Content="6"/>
-                            </ComboBox>
-                        </Grid>
-                        <!--Nonce-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Nonce" Style="{StaticResource titleText}"/>
-                            <TextBox x:Name="nonceText1" Style="{StaticResource readOnlyTextBox}"/>
-                        </Grid>
-                        <!--PrevHash-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Prev Hash" Style="{StaticResource titleText}"/>
-                            <TextBox x:Name="prevHashText1" Style="{StaticResource readOnlyTextBox}"/>
-                        </Grid>
-                        <!--Hash-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Hash" Style="{StaticResource titleText}"/>
-                            <TextBox x:Name="hashText1" Style="{StaticResource readOnlyTextBox}"/>
-                        </Grid>
-                        <!-- Button -->
-                        <Button x:Name="submitButton1" Content="Submit" Click="SubmitButton1_Click" Style="{StaticResource buttonStyle}" IsEnabled="False"/>
-                    </StackPanel>
-                </Border>
+            <!--Chain history-->
+            <Border Grid.Column="1" Width="660" Margin="0 71 0 0">
+                <StackPanel>
+                    <TextBlock Text="Chain History" Style="{StaticResource titleTextHistory}"/>
+                    <TextBox x:Name="historyText" Style="{StaticResource readOnlyTextBoxHistory}" Text="List of previous valid Block entries"/>
+                </StackPanel>
+            </Border>
 
-            </Grid>
-        </StackPanel>
+        </Grid>
+
     </Canvas>
 
 </Window>
