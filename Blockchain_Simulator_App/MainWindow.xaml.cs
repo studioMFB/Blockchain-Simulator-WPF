@@ -17,7 +17,6 @@ namespace Blockchain_Simulator_App
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            submitButton1.IsEnabled = true;
             Block block;
             string inputData = dataText.Text;
             int inputDifficulty = 0;
@@ -31,14 +30,19 @@ namespace Blockchain_Simulator_App
             nonceText.Text = Block.Nonce.ToString();
             prevHashText.Text = block.PrevHash;
             hashText.Text = block.Hash;
-            if (!Blockchain.ValidBlock)
-            { TemplateA.Background = Brushes.IndianRed; }
-            submitButton.IsEnabled = false;
+            if (Blockchain.ValidBlock)
+            {
+                submitButton1.IsEnabled = true; // If Block Valid then enables next submition form
+                borderColour1.Background = Brushes.White; // And sets its Default colour
+                submitButton.IsEnabled = false; // Then locks the current validated form    
+                borderColour.Background = Brushes.GreenYellow; // And sets its Valid colour 
+            }
+            else
+            { borderColour.Background = Brushes.IndianRed; }// Not Valid colour
         }
 
         private void SubmitButton1_Click(object sender, RoutedEventArgs e)
         {
-            submitButton.IsEnabled = true;
             Block block;
             string inputData = dataText1.Text;
             int inputDifficulty = 0;
@@ -52,10 +56,16 @@ namespace Blockchain_Simulator_App
             nonceText1.Text = Block.Nonce.ToString();
             prevHashText1.Text = block.PrevHash;
             hashText1.Text = block.Hash;
-            if (!Blockchain.ValidBlock)
-            { TemplateA.Background = Brushes.IndianRed; }
-            submitButton1.IsEnabled = false;
+            if (Blockchain.ValidBlock)
+            {
+                submitButton.IsEnabled = true; // If Block Valid then enables next submition form
+                borderColour.Background = Brushes.White; // And sets its Default colour
+                submitButton1.IsEnabled = false; // Then locks the current validated form    
+                borderColour1.Background = Brushes.GreenYellow; // And sets its Valid colour 
+            }
+            else
+            { borderColour1.Background = Brushes.IndianRed; } // Not Valid colour
         }
-     
+
     }
 }

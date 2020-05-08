@@ -14,8 +14,8 @@ namespace Blockchain_Simulator_App
         private string _data;
         private string _prevHash = "n/a";
         private string _hash;
-        private string _hashTest;
-        private static int _nonce; // Default value to be increased untill a suitable Hash key is mined / created.
+        private static int _nonce; // Stands for: "number only used once".
+                                   // Default value to be increased untill a suitable Hash key is mined / created.
 
         public static int Index { get { return _index; } set { _index = value; } }
         public DateTime TimeStamp { get { return _timeStamp; } set { _timeStamp = value; } }

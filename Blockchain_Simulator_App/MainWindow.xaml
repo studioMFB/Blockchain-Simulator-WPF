@@ -41,7 +41,7 @@
             <Setter Property="Foreground" Value="CadetBlue"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Margin" Value="0 10 10 30"/>
+            <Setter Property="Margin" Value="0 25 10 15"/>
         </Style>
         <Style x:Key="readOnlyTextBox" TargetType="TextBox">
             <Setter Property="Grid.Column" Value="1"/>
@@ -84,13 +84,13 @@
 
                 <Border x:Name="borderColour" Style="{StaticResource borderStyle}" Grid.Column="0" >
                     <StackPanel>
-                        <!--Index-->
+                        <!--IndexBlock-->
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="120"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="Index" Style="{StaticResource titleText}"/>
+                            <TextBlock Text="Blok #" Style="{StaticResource titleText}"/>
                             <TextBox x:Name="indexText" Style="{StaticResource readOnlyTextBox}"/>
                         </Grid>
                         <!--TimeStamp-->
@@ -163,13 +163,13 @@
                 </Border>
                 <Border x:Name="borderColour1" Style="{StaticResource borderStyle}" Grid.Column="1">
                     <StackPanel>
-                        <!--Index-->
+                        <!--IndexBlock-->
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="120"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="Index" Style="{StaticResource titleText}"/>
+                            <TextBlock Text="Block #" Style="{StaticResource titleText}"/>
                             <TextBox x:Name="indexText1" Style="{StaticResource readOnlyTextBox}"/>
                         </Grid>
                         <!--TimeStamp-->
