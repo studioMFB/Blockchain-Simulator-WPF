@@ -9,20 +9,20 @@ namespace Blockchain_Simulator_App
 {
     class Block
     {
-        private static int _index = 0;
+        private int _index = 0;
         private DateTime _timeStamp;
         private string _data;
         private string _prevHash = "n/a";
         private string _hash;
-        private static int _nonce; // Stands for: "number only used once".
+        private int _nonce; // Stands for: "number only used once".
                                    // Default value to be increased untill a suitable Hash key is mined / created.
 
-        public static int Index { get { return _index; } set { _index = value; } }
+        public int Index { get { return _index; } set { _index = value; } }
         public DateTime TimeStamp { get { return _timeStamp; } set { _timeStamp = value; } }
         public string Data { get { return _data; } set { _data = value; } }
         public string PrevHash { get { return _prevHash; } set { _prevHash = value; } }
         public string Hash { get { return _hash; } set { _hash = value; } }
-        public static int Nonce { get { return _nonce; } set { _nonce = value; } }
+        public int Nonce { get { return _nonce; } set { _nonce = value; } }
 
         public Block(int difficulty, string data)
         {

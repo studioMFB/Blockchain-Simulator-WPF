@@ -9,12 +9,42 @@ namespace Blockchain_Simulator_App
     public partial class MainWindow : Window
     {
         Blockchain blockchain = new Blockchain();
+        private static int _index;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        private void PrevButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(_index == 0))
+            { _index--; }
+
+            indexText.Text = _index.ToString();
+            dataText.Text = blockchain.Chain[_index].Data;
+            timeStampText.Text = blockchain.Chain[_index].TimeStamp.ToString();
+            nonceText.Text = blockchain.Chain[_index].Nonce.ToString();
+            prevHashText.Text = blockchain.Chain[_index].PrevHash.ToString();
+            hashText.Text = blockchain.Chain[_index].Hash.ToString();
+        }
+
+        /*
+        private void  PrevButton_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Block block in blockchain.Chain)
+            {
+                _index = block.Index;
+                indexText.Text = _index.ToString();
+
+                dataText.Text = blockchain.Chain[_index].Data;
+                timeStampText.Text = blockchain.Chain[_index].TimeStamp.ToString();
+                nonceText.Text = blockchain.Chain[_index].Nonce.ToString();
+                prevHashText.Text = blockchain.Chain[_index].PrevHash.ToString();
+                hashText.Text = blockchain.Chain[_index].Hash.ToString();
+            }
+        }
+        */
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             Block block;
@@ -25,14 +55,15 @@ namespace Blockchain_Simulator_App
             catch
             { inputDifficulty = 0; }
             blockchain.AddBlock(block = new Block(inputDifficulty, inputData));
-            indexText.Text = Block.Index.ToString();
+            indexText.Text = block.Index.ToString();
+            _index = block.Index;
             timeStampText.Text = block.TimeStamp.ToString();
-            nonceText.Text = Block.Nonce.ToString();
+            nonceText.Text = block.Nonce.ToString();
             prevHashText.Text = block.PrevHash;
             hashText.Text = block.Hash;
             if (Blockchain.ValidBlock)
             {
-               // submitButton1.IsEnabled = true; // If Block Valid then enables next submition form
+                // submitButton1.IsEnabled = true; // If Block Valid then enables next submition form
                 //borderColour1.Background = Brushes.White; // And sets its Default colour
                 //borderColour.Background = Brushes.GreenYellow; // And sets its Valid colour 
                 historyText.Text += "\n" + block.ToString();
@@ -44,33 +75,18 @@ namespace Blockchain_Simulator_App
             }
         }
 
-        /*
-        private void SubmitButton1_Click(object sender, RoutedEventArgs e)
+        private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            Block block;
-            string inputData = dataText1.Text;
-            int inputDifficulty = 0;
-            try
-            { inputDifficulty = int.Parse(difficultyText1.Text); }
-            catch
-            { inputDifficulty = 0; }
-            blockchain.AddBlock(block = new Block(inputDifficulty, inputData));
-            indexText1.Text = Block.Index++.ToString();
-            timeStampText1.Text = block.TimeStamp.ToString();
-            nonceText1.Text = Block.Nonce.ToString();
-            prevHashText1.Text = block.PrevHash;
-            hashText1.Text = block.Hash;
-            if (Blockchain.ValidBlock)
-            {
-                submitButton.IsEnabled = true; // If Block Valid then enables next submition form
-                borderColour.Background = Brushes.White; // And sets its Default colour
-                submitButton1.IsEnabled = false; // Then locks the current validated form    
-                borderColour1.Background = Brushes.GreenYellow; // And sets its Valid colour 
-                chain.Content += block.ToString();
-            }
-            else
-            { borderColour1.Background = Brushes.IndianRed; } // Not Valid colour
+            if (!(_index == blockchain.Chain.Count - 1))
+            { _index++; }
+
+            indexText.Text = _index.ToString();
+            dataText.Text = blockchain.Chain[_index].Data;
+            timeStampText.Text = blockchain.Chain[_index].TimeStamp.ToString();
+            nonceText.Text = blockchain.Chain[_index].Nonce.ToString();
+            prevHashText.Text = blockchain.Chain[_index].PrevHash.ToString();
+            hashText.Text = blockchain.Chain[_index].Hash.ToString();
         }
-        */
+
     }
 }

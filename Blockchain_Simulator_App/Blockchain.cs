@@ -64,7 +64,7 @@ namespace Blockchain_Simulator_App
             Console.WriteLine("Is Block valid? \n" + ValidBlock);
             if (ValidBlock)
             {
-                Block.Index = Chain.IndexOf(newBlock);
+                newBlock.Index = Chain.IndexOf(newBlock);
                 Console.WriteLine(newBlock.ToString() + "\n");
             }
             else
