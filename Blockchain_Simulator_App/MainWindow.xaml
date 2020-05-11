@@ -174,20 +174,31 @@
                         <TextBlock Text="Hash" Style="{StaticResource titleText}"/>
                         <TextBox x:Name="hashText" Style="{StaticResource readOnlyTextBox}"/>
                     </Grid>
-                    <!--Buttons-->
-                    <Grid Margin="55 0 0 0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <!-- PrevButton -->
-                        <Button x:Name="prevButton" Content="Previous" Click="PrevButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="0" IsEnabled="False"/>
-                        <!-- SubmitButton -->
-                        <Button x:Name="submitButton" Content="Submit" Click="SubmitButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="1" IsEnabled="True"/>
-                        <!-- NextButton -->
-                        <Button x:Name="nextButton" Content="Next" Click="NextButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="2" IsEnabled="False"/>
-                    </Grid>
+                    <StackPanel>
+                        <!--Buttons-->
+                        <Grid Margin="55 0 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <!-- PrevButton -->
+                            <Button x:Name="prevButton" Content="Previous" Click="PrevButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="0" IsEnabled="False"/>
+                            <!-- SubmitButton -->
+                            <Button x:Name="submitButton" Content="Submit" Click="SubmitButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="1" IsEnabled="True"/>
+                            <!-- NextButton -->
+                            <Button x:Name="nextButton" Content="Next" Click="NextButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="2" IsEnabled="False"/>
+                        </Grid>
+                        <Grid Margin="55 0 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <!-- TamperButton -->
+                            <Button x:Name="tamperButton" Content="Tamper" Click="TamperButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="1" IsEnabled="False"/>
+                        </Grid>
+                    </StackPanel>
 
                 </StackPanel>
             </Border>
@@ -199,7 +210,7 @@
                     <TextBox x:Name="historyText" Style="{StaticResource readOnlyTextBoxHistory}" Text="List of previous valid Block entries"/>
                     <!-- NewChainButton -->
                     <Button x:Name="newChainButton" Content="New" Click="NewChainButton_Click" Style="{StaticResource buttonStyle}" HorizontalAlignment="Center" IsEnabled="False"/>
-        </StackPanel>
+                </StackPanel>
             </Border>
 
         </Grid>
