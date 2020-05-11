@@ -14,7 +14,6 @@
             <Setter Property="Margin" Value="0 90 0 0"/>
         </Style>
         <Style x:Key="buttonStyle" TargetType="Button">
-            <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="BorderBrush" Value="White" />
             <Setter Property="Background" Value="CadetBlue" />
             <Setter Property="Foreground" Value="#fff"/>
@@ -175,8 +174,21 @@
                         <TextBlock Text="Hash" Style="{StaticResource titleText}"/>
                         <TextBox x:Name="hashText" Style="{StaticResource readOnlyTextBox}"/>
                     </Grid>
-                    <!-- Button -->
-                    <Button x:Name="submitButton" Content="Submit" Click="SubmitButton_Click" Style="{StaticResource buttonStyle}" IsEnabled="True"/>
+                    <!--Buttons-->
+                    <Grid Margin="55 0 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <!-- PrevButton -->
+                        <Button x:Name="prevButton" Content="Previous" Click="PrevButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="0" IsEnabled="True"/>
+                        <!-- SubmitButton -->
+                        <Button x:Name="submitButton" Content="Submit" Click="SubmitButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="1" IsEnabled="True"/>
+                        <!-- NextButton -->
+                        <Button x:Name="nextButton" Content="Next" Click="NextButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="2" IsEnabled="True"/>
+                    </Grid>
+
                 </StackPanel>
             </Border>
 
