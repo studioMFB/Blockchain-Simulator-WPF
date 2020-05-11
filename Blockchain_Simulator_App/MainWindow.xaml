@@ -182,11 +182,11 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <!-- PrevButton -->
-                        <Button x:Name="prevButton" Content="Previous" Click="PrevButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="0" IsEnabled="True"/>
+                        <Button x:Name="prevButton" Content="Previous" Click="PrevButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="0" IsEnabled="False"/>
                         <!-- SubmitButton -->
                         <Button x:Name="submitButton" Content="Submit" Click="SubmitButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="1" IsEnabled="True"/>
                         <!-- NextButton -->
-                        <Button x:Name="nextButton" Content="Next" Click="NextButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="2" IsEnabled="True"/>
+                        <Button x:Name="nextButton" Content="Next" Click="NextButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="2" IsEnabled="False"/>
                     </Grid>
 
                 </StackPanel>
@@ -197,7 +197,9 @@
                 <StackPanel>
                     <TextBlock Text="Chain History" Style="{StaticResource titleTextHistory}"/>
                     <TextBox x:Name="historyText" Style="{StaticResource readOnlyTextBoxHistory}" Text="List of previous valid Block entries"/>
-                </StackPanel>
+                    <!-- NewChainButton -->
+                    <Button x:Name="newChainButton" Content="New" Click="NewChainButton_Click" Style="{StaticResource buttonStyle}" HorizontalAlignment="Center" IsEnabled="False"/>
+        </StackPanel>
             </Border>
 
         </Grid>

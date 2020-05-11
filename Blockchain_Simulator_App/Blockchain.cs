@@ -10,18 +10,15 @@ namespace Blockchain_Simulator_App
 {
     class Blockchain
     {
-        private static int _difficulty; // Number of 0 required to be at the begining of a Hash key. 
-                                        // The Higher the difficulty, the harder it is to get a suitable Hash key, the slowier it is to mine a Block.
-        private static List<Block> _chain = new List<Block>();
-
+        private static List<Block> _chain;
 
         public List<Block> Chain { get { return _chain; } set { _chain = value; } }
-        public static int Difficulty { get { return _difficulty; } set { _difficulty = value; } }
-        public static bool ValidBlock { get; set; }
+        public static bool IsValidBlock { get; set; }
 
         public Blockchain()
         {
-            _chain.Add(CreateGenesisBlock(new Block(_difficulty, "Genesis block"))); // Adds by default, the very first Block called Genesis, to the Chain.
+            _chain = new List<Block>();
+            CreateGenesisBlock(); // Adds by default, the very first Block called Genesis, to the Chain.
         }
 
         /// <summary>
@@ -30,10 +27,11 @@ namespace Blockchain_Simulator_App
         /// <param name="newData"></param>
         /// <param name="previousHash"></param>
         /// <returns></returns>
-        public Block CreateGenesisBlock(Block genesisBlock)
+        public void CreateGenesisBlock()
         {
+            Block genesisBlock = new Block(0, "Genensis Block");
             genesisBlock.MiningBlock(0);
-            return genesisBlock;
+            _chain.Add(genesisBlock); // Adds by default, the very first Block called Genesis, to the Chain.
         }
 
         /// <summary>
@@ -57,30 +55,13 @@ namespace Blockchain_Simulator_App
         /// <param name="newData"></param>
         public void AddBlock(Block newBlock)
         {
-             newBlock.MiningBlock(_difficulty);
+             newBlock.MiningBlock(newBlock.Difficulty);
             newBlock.PrevHash = PreviousHash();
             _chain.Add(newBlock);
-            ValidBlock = IsChainValid();
-            Console.WriteLine("Is Block valid? \n" + ValidBlock);
-            if (ValidBlock)
-            {
-                newBlock.Index = Chain.IndexOf(newBlock);
-                Console.WriteLine(newBlock.ToString() + "\n");
-            }
+            if (IsChainValid())
+            { newBlock.Index = Chain.IndexOf(newBlock); }
             else
             { _chain.Remove(newBlock); }
-            /*
-            if (_chain.Count == 3) // Testing BlockChain member method IsValid
-            {
-                Console.WriteLine("\n Trying to change Data of Block index : 1");
-                _chain[1].Data = "Change previous Block Data"; // If you try to change the Data value of a previous Block, 
-                Console.WriteLine("Is Block valid? \n" + IsChainValid()); // its new Hash will not match the one originally recorded. 
-                                                                          //The Block will NOT be valid.
-                Console.WriteLine("Trying to create a new Hash Key from changed Data of Block index : 1");
-                _chain[1].Hash = _chain[1].CalculateHashKey_Sha256(); // As well, if you try to create a new Hash Key,
-                Console.WriteLine("Is Block valid? \n" + IsChainValid()); // it will not match the next Block previous Hash in record. 
-            }
-            */
         }
 
         /// <summary>
@@ -94,13 +75,15 @@ namespace Blockchain_Simulator_App
             {
                 Block currentBlock = _chain[index];
                 Block previousBlock = _chain[index - 1];
-                //if (currentBlock.Hash != currentBlock.CalculateHashKey_Sha256())
-                // if (currentBlock.Hash != currentBlock.MiningBlock(_difficulty))
-                //{ return false; }
                 if (currentBlock.PrevHash != previousBlock.Hash)
-                { return false; }
+                {
+                    IsValidBlock = false;
+                    break;
+                }
+                else
+                {  IsValidBlock = true;  }
             }
-            return true;
+            return IsValidBlock;
         }
 
     }

@@ -14,6 +14,8 @@ namespace Blockchain_Simulator_App
         private string _data;
         private string _prevHash = "n/a";
         private string _hash;
+        private int _difficulty; // Number of 0 required to be at the begining of a Hash key. 
+                                 // The Higher the difficulty, the harder it is to get a suitable Hash key, the slowier it is to mine a Block.
         private int _nonce; // Stands for: "number only used once".
                                    // Default value to be increased untill a suitable Hash key is mined / created.
 
@@ -22,11 +24,15 @@ namespace Blockchain_Simulator_App
         public string Data { get { return _data; } set { _data = value; } }
         public string PrevHash { get { return _prevHash; } set { _prevHash = value; } }
         public string Hash { get { return _hash; } set { _hash = value; } }
+        public int Difficulty { get { return _difficulty; } set { _difficulty = value; } }
         public int Nonce { get { return _nonce; } set { _nonce = value; } }
 
+        public Block()
+        {
+        }
         public Block(int difficulty, string data)
         {
-            Blockchain.Difficulty = difficulty;
+            _difficulty = difficulty;
             _timeStamp = DateTime.Now;
             _data = data;
             _nonce = 0;
@@ -44,7 +50,7 @@ namespace Blockchain_Simulator_App
             else
             { lastHashKey = "\n - Previous Hash Key: "; }
             { return ("\n   Block # " + _index + "\n - Time Stamp: " + _timeStamp + "\n - Data: " + _data +
-                    "\n - Difficulty: " + Blockchain.Difficulty + "\n - Nonce: " + _nonce +
+                    "\n - Difficulty: " + _difficulty + "\n - Nonce: " + _nonce +
                     "\n - Hash Key: " + _hash + lastHashKey + _prevHash); }
         }
 
