@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace Blockchain_Simulator_App
 {
+    /// <summary>
+    /// (Simply Explained, 2020)
+    /// </summary>
     class Blockchain
     {
         private static List<Block> _chain;

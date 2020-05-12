@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Blockchain_Simulator_App"
-       
+    
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1400">
 
+    <!--(Brownworth, 2020)-->
     <Window.Resources>
 
         <Style x:Key="borderStyle" TargetType="Border">
@@ -189,20 +190,18 @@
                             <!-- NextButton -->
                             <Button x:Name="nextButton" Content="Next" Click="NextButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="2" IsEnabled="False"/>
                         </Grid>
+                        <!-- TamperButton -->
                         <Grid Margin="55 0 0 0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <!-- TamperButton -->
                             <Button x:Name="tamperButton" Content="Tamper" Click="TamperButton_Click" Style="{StaticResource buttonStyle}" Grid.Column="1" IsEnabled="False"/>
                         </Grid>
                     </StackPanel>
-
                 </StackPanel>
             </Border>
-
             <!--Chain history-->
             <Border Grid.Column="1" Width="660" Margin="0 71 0 0">
                 <StackPanel>
@@ -214,7 +213,5 @@
             </Border>
 
         </Grid>
-
     </Canvas>
-
 </Window>

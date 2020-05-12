@@ -47,9 +47,7 @@ namespace Blockchain_Simulator_App
                 _block.Data = dataText.Text;
                 string recordedHash = hashText.Text;
                 _blockchain.Chain[int.Parse(indexText.Text)].MiningBlock(_blockchain.Chain[int.Parse(indexText.Text)].Difficulty);
-               // _block.Hash = _blockchain.Chain[int.Parse(indexText.Text)].CalculateHashKey_Sha256(); // Recalculate Hash Key with new Data
                 _blockchain.IsChainValid();
-
                 // Output Block's values
                 indexText.Text = _block.Index.ToString();
                 _simulatorIndex = _block.Index;

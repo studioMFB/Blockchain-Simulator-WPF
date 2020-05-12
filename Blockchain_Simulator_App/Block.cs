@@ -7,6 +7,9 @@ using System.Security.Cryptography;
 
 namespace Blockchain_Simulator_App
 {
+    /// <summary>
+    /// (IBM Developer, 2020)
+    /// </summary>
     class Block
     {
         private int _index = 0;
@@ -55,6 +58,7 @@ namespace Blockchain_Simulator_App
         }
 
         /// <summary>
+        /// (Docs.microsoft.com, 2020)
         /// Cryptographic function whish from a string creates an hash key of 256 bit.
         /// </summary>
         /// <param name="value"></param>
