@@ -109,7 +109,7 @@
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Blok #" Style="{StaticResource titleText}"/>
+                        <TextBlock Text="Block #" Style="{StaticResource titleText}"/>
                         <TextBox x:Name="indexText" Style="{StaticResource readOnlyTextBox}"/>
                     </Grid>
                     <!--TimeStamp-->
